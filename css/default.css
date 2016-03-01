@@ -1,0 +1,30 @@
+.main {
+  position:relative;
+}
+
+#bigTitle {
+  position: relative;
+  text-align: center;
+  top: 300px;
+}
+
+.logo {
+  width:70px;
+  height:70px;
+}
+
+.title {
+  font-family: "Century Gothic", sans-serif;
+  font-size: 40px;
+  color: black;
+}
+
+#searchBar {
+  position: relative;
+  text-align: center;
+  top: 400px;
+}
+
+#write {
+  margin-top:30px;
+}
