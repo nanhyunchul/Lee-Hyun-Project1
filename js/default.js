@@ -30,36 +30,28 @@ var reviews = [{
   comment: 'ashfoisadhfoinv'
 }];
 
-var reviewLocation = document.getElementById('reviewList');
-
-var reviewDiv = document.createElement('div');
-reviewDiv.setAttribute('class', 'list-group');
-
-var reviewContent = document.createElement('a');
-reviewContent.setAttribute('href', '#');
-reviewContent.setAttribute('class', 'list-group-item list-group-item-danger');
-
-var commentHead = document.createElement('h5');
-commentHead.setAttribute('class', 'list-group-item-heading');
-
-var profilePicture = document.createElement('img');
-profilePicture.setAttribute('class', 'picture');
-profilePicture.setAttribute('src', 'images/logo.png');
-profilePicture.setAttribute('width', '50px');
-profilePicture.setAttribute('height', '50px');
-
-var i = 0;
-var profileName = document.createElement('span');
-var userName = document.createTextNode(reviews[i].name);
-
-var commentBody = document.createElement('p');
-commentBody.setAttribute('class', 'list-group-item-text');
-var commentText = document.createTextNode(reviews[i].comment);
-
 function results() {
-  var input = document.getElementById('search');
   for (i = 0; i < reviews.length; i++) {
-    if (input.value.toLowerCase() == reviews[i].city.toLowerCase()) {
+    var reviewLocation = document.getElementById('reviewList');
+    var reviewDiv = document.createElement('div');
+    reviewDiv.setAttribute('class', 'list-group');
+    var reviewContent = document.createElement('a');
+    reviewContent.setAttribute('href', '#');
+    reviewContent.setAttribute('class', 'list-group-item list-group-item-danger');
+    var commentHead = document.createElement('h5');
+    commentHead.setAttribute('class', 'list-group-item-heading');
+    var profilePicture = document.createElement('img');
+    profilePicture.setAttribute('class', 'picture');
+    profilePicture.setAttribute('src', 'images/logo.png');
+    profilePicture.setAttribute('width', '50px');
+    profilePicture.setAttribute('height', '50px');
+    var profileName = document.createElement('span');
+    var userName = document.createTextNode(reviews[i].name);
+    var commentBody = document.createElement('p');
+    commentBody.setAttribute('class', 'list-group-item-text');
+    var commentText = document.createTextNode(reviews[i].comment);
+
+    if (searchInput.value == '') {
       profileName.appendChild(userName);
       commentHead.appendChild(profilePicture);
       commentHead.appendChild(profileName);
@@ -68,17 +60,21 @@ function results() {
       reviewContent.appendChild(commentBody);
       reviewDiv.appendChild(reviewContent);
       reviewLocation.appendChild(reviewDiv);
-    } else if (input.value == '') {
+    }
 
+    if (searchInput.value.toLowerCase() == reviews[i].city.toLowerCase() || searchInput.value == reviews[i].zip) {
+      profileName.appendChild(userName);
+      commentHead.appendChild(profilePicture);
+      commentHead.appendChild(profileName);
+      commentBody.appendChild(commentText);
+      reviewContent.appendChild(commentHead);
+      reviewContent.appendChild(commentBody);
+      reviewDiv.appendChild(reviewContent);
+      reviewLocation.appendChild(reviewDiv);
     }
   }
 }
 
-var click = document.getElementById('button');
-
-click.addEventListener('click', results());
-
-var input = document.getElementById('search');
-for (i = 0; i < reviews.length; i++) {
-  console.log(reviews[i].city);
-}
+var searchInput = document.getElementById('search');
+var lookUp = document.getElementById('button');
+lookUp.addEventListener('click', results);
