@@ -51,7 +51,11 @@ function results() {
     commentBody.setAttribute('class', 'list-group-item-text');
     var commentText = document.createTextNode(reviews[i].comment);
 
+<<<<<<< HEAD
     if (searchInput.value == '') {
+=======
+    if (searchInput.value.toLowerCase() == reviews[i].city.toLowerCase()) {
+>>>>>>> fb9416330a0bbec2f4d64a6ab91e18d16000b262
       profileName.appendChild(userName);
       commentHead.appendChild(profilePicture);
       commentHead.appendChild(profileName);
@@ -60,6 +64,7 @@ function results() {
       reviewContent.appendChild(commentBody);
       reviewDiv.appendChild(reviewContent);
       reviewLocation.appendChild(reviewDiv);
+<<<<<<< HEAD
     }
 
     if (searchInput.value.toLowerCase() == reviews[i].city.toLowerCase() || searchInput.value == reviews[i].zip) {
@@ -71,10 +76,16 @@ function results() {
       reviewContent.appendChild(commentBody);
       reviewDiv.appendChild(reviewContent);
       reviewLocation.appendChild(reviewDiv);
+=======
+>>>>>>> fb9416330a0bbec2f4d64a6ab91e18d16000b262
     }
   }
 }
 
 var searchInput = document.getElementById('search');
 var lookUp = document.getElementById('button');
+<<<<<<< HEAD
 lookUp.addEventListener('click', results);
+=======
+lookUp.addEventListener('click', results());
+>>>>>>> fb9416330a0bbec2f4d64a6ab91e18d16000b262
