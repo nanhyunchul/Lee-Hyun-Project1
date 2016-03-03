@@ -9,8 +9,3 @@
 .space-70 {
   margin-top:70px;
 }
-
-.list-group-item-text {
-  max-height: 90px;
-  overflow: hidden;
-}

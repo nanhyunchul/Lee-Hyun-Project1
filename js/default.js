@@ -104,7 +104,7 @@ function results(event) {
     var restaurantNameValue = document.createTextNode(reviews[i].restaurant);
 
     var restaurantAddress = document.createElement('p');
-    var AddressValue = document.createTextNode('Address: ' + reviews[i].Address);
+    var AddressValue = document.createTextNode('Address: ' + reviews[i].address);
 
     if (searchInput.value.toLowerCase() == reviews[i].restaurant.toLowerCase()) {
       restaurantName.appendChild(restaurantNameValue);
