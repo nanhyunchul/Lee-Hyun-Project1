@@ -30,51 +30,58 @@ var reviews = [{
   comment: 'ashfoisadhfoinv'
 }];
 
-function results() {
+var reviewLocation = document.getElementById('reviewList');
+var searchInput = document.getElementById('keyword');
+var lookUp = document.getElementById('search');
+var remove = document.getElementsByClassName('panel');
+var parentRemove = remove.parentNode;
+
+function removeResults(event) {
+  event.preventDefault();
+  for (i = 0; i < remove.length; i++)
+    parentRemove.removeChild(remove[i]);
+}
+
+function results(event) {
+  event.preventDefault();
   for (i = 0; i < reviews.length; i++) {
-    var reviewLocation = document.getElementById('reviewList');
-    var reviewDiv = document.createElement('div');
-    reviewDiv.setAttribute('class', 'list-group');
-    var reviewContent = document.createElement('a');
-    reviewContent.setAttribute('href', '#');
-    reviewContent.setAttribute('class', 'list-group-item list-group-item-danger');
-    var commentHead = document.createElement('h5');
-    commentHead.setAttribute('class', 'list-group-item-heading');
+    var reviewContent = document.createElement('div')
+    reviewContent.setAttribute('class', 'panel panel-default');
+    var commentHeading = document.createElement('div');
+    commentHeading.setAttribute('class', 'panel-heading');
     var profilePicture = document.createElement('img');
     profilePicture.setAttribute('class', 'picture');
     profilePicture.setAttribute('src', 'images/logo.png');
     profilePicture.setAttribute('width', '50px');
     profilePicture.setAttribute('height', '50px');
     var profileName = document.createElement('span');
+    profileName.setAttribute('class', 'panel-title');
     var userName = document.createTextNode(reviews[i].name);
-    var commentBody = document.createElement('p');
-    commentBody.setAttribute('class', 'list-group-item-text');
+    var commentBody = document.createElement('div');
+    commentBody.setAttribute('class', 'panel-body');
     var commentText = document.createTextNode(reviews[i].comment);
 
     if (searchInput.value == '') {
       profileName.appendChild(userName);
-      commentHead.appendChild(profilePicture);
-      commentHead.appendChild(profileName);
+      commentHeading.appendChild(profilePicture);
+      commentHeading.appendChild(profileName);
       commentBody.appendChild(commentText);
-      reviewContent.appendChild(commentHead);
+      reviewContent.appendChild(commentHeading);
       reviewContent.appendChild(commentBody);
-      reviewDiv.appendChild(reviewContent);
-      reviewLocation.appendChild(reviewDiv);
+      reviewLocation.appendChild(reviewContent);
     }
 
     if (searchInput.value.toLowerCase() == reviews[i].city.toLowerCase() || searchInput.value == reviews[i].zip) {
       profileName.appendChild(userName);
-      commentHead.appendChild(profilePicture);
-      commentHead.appendChild(profileName);
+      commentHeading.appendChild(profilePicture);
+      commentHeading.appendChild(profileName);
       commentBody.appendChild(commentText);
-      reviewContent.appendChild(commentHead);
+      reviewContent.appendChild(commentHeading);
       reviewContent.appendChild(commentBody);
-      reviewDiv.appendChild(reviewContent);
-      reviewLocation.appendChild(reviewDiv);
+      reviewLocation.appendChild(reviewContent);
     }
   }
 }
 
-var searchInput = document.getElementById('search');
-var lookUp = document.getElementById('button');
-lookUp.addEventListener('click', results);
+lookUp.addEventListener('submit', removeResults);
+lookUp.addEventListener('submit', results);
