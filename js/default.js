@@ -31,27 +31,26 @@ var reviews = [{
 }];
 
 function results() {
-  var reviewLocation = document.getElementById('reviewList');
-  var reviewDiv = document.createElement('div');
-  reviewDiv.setAttribute('class', 'list-group');
-  var reviewContent = document.createElement('a');
-  reviewContent.setAttribute('href', '#');
-  reviewContent.setAttribute('class', 'list-group-item list-group-item-danger');
-  var commentHead = document.createElement('h5');
-  commentHead.setAttribute('class', 'list-group-item-heading');
-  var profilePicture = document.createElement('img');
-  profilePicture.setAttribute('class', 'picture');
-  profilePicture.setAttribute('src', 'images/logo.png');
-  profilePicture.setAttribute('width', '50px');
-  profilePicture.setAttribute('height', '50px');
-  var profileName = document.createElement('span');
-  var userName = document.createTextNode(reviews[i].name);
-  var commentBody = document.createElement('p');
-  commentBody.setAttribute('class', 'list-group-item-text');
-  var commentText = document.createTextNode(reviews[i].comment);
-
-
   for (i = 0; i < reviews.length; i++) {
+    var reviewLocation = document.getElementById('reviewList');
+    var reviewDiv = document.createElement('div');
+    reviewDiv.setAttribute('class', 'list-group');
+    var reviewContent = document.createElement('a');
+    reviewContent.setAttribute('href', '#');
+    reviewContent.setAttribute('class', 'list-group-item list-group-item-danger');
+    var commentHead = document.createElement('h5');
+    commentHead.setAttribute('class', 'list-group-item-heading');
+    var profilePicture = document.createElement('img');
+    profilePicture.setAttribute('class', 'picture');
+    profilePicture.setAttribute('src', 'images/logo.png');
+    profilePicture.setAttribute('width', '50px');
+    profilePicture.setAttribute('height', '50px');
+    var profileName = document.createElement('span');
+    var userName = document.createTextNode(reviews[i].name);
+    var commentBody = document.createElement('p');
+    commentBody.setAttribute('class', 'list-group-item-text');
+    var commentText = document.createTextNode(reviews[i].comment);
+
     if (searchInput.value.toLowerCase() == reviews[i].city.toLowerCase()) {
       profileName.appendChild(userName);
       commentHead.appendChild(profilePicture);
@@ -61,6 +60,7 @@ function results() {
       reviewContent.appendChild(commentBody);
       reviewDiv.appendChild(reviewContent);
       reviewLocation.appendChild(reviewDiv);
+    }
   }
 }
 
