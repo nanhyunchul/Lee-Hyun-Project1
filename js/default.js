@@ -52,7 +52,7 @@ function results() {
 
 
   for (i = 0; i < reviews.length; i++) {
-    if (input.value.toLowerCase() == reviews[i].city.toLowerCase()) {
+    if (searchInput.value.toLowerCase() == reviews[i].city.toLowerCase()) {
       profileName.appendChild(userName);
       commentHead.appendChild(profilePicture);
       commentHead.appendChild(profileName);
@@ -64,7 +64,6 @@ function results() {
   }
 }
 
-var input = document.getElementById('search');
-var click = document.getElementById('button');
-
-document.click.addEventListener('click', results);
+var searchInput = document.getElementById('search');
+var lookUp = document.getElementById('button');
+lookUp.addEventListener('click', results());
