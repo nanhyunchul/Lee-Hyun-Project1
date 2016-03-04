@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="css/default.css">
   </head>
   <body>
+<!-- logo and title -->
     <div class="container main" id="top">
       <div class="row space-350">
         <div class="col-md-12 text-center">
@@ -15,39 +16,56 @@
           </a>
         </div>
       </div>
+<!-- search box -->
       <div class="row space-30">
-        <div class="col-md-12 text-center">
+        <div class="col-md-6 col-md-offset-3 text-center">
           <form id="search">
-            <input id="keyword" type="text" name=search placeholder="restaurant, city or zip">
-            <input class="btn btn-warning" type="submit" value="search">
+            <div class="input-group">
+              <input class="form-control" id="keyword" type="text" name=search placeholder="restaurant, city or zip">
+              <span class="input-group-btn">
+                <button class="btn btn-warning" type="submit">search
+                </button>
+              </span>
+            </div>
           </form><br>
-          <div class="btn btn-warning" id="write"><a href="#">Write your own review!</a>
+<!-- write review. review panel will display when clicked -->
+          <div class="btn btn-warning" id="write" type="submit">Write your own review!
           </div>
         </div>
       </div>
+<!-- search result will be shown here -->
       <div class="row space-70">
         <div class="col-md-8 col-md-offset-2" id="reviewList">
         </div>
       </div>
-<!-- review panel will be added at this location-->
-      <div class="row space-30">
+<!-- review panel-->
+      <div class="row space-30 hidden">
         <div class="col-md-8 col-md-offset-2">
           <form>
             <fieldset>
               <legend>Please Share Your Review</legend>
-              <label>Your Name:<br>
-              <input type="text" name="name"></label></br>
-              <label>Restanrant Name:<br>
-              <input type="text" name="restaurant"></label><br>
-              <label>Restauran Address:<br>
-              <input type="text" name="address"></label><br>
-              <span>comments:</span><br>
-              <textarea name="comment">Please leave your comment</textarea>
+                <div class="input-group">
+                  <span class="input-group-addon"><b>Name:</b></span>
+                  <input type="text" class="form-control" placeholder="Your Name">
+                </div><br>
+                <div class="input-group">
+                  <span class="input-group-addon"><b>Restanrant Name:</b></span>
+                  <input type="text" class="form-control" placeholder="Restaurant">
+                </div><br>
+                <div class="input-group">
+                  <span class="input-group-addon"><b>Restaurant Address:</b></span>
+                  <input type="text" class="form-control" placeholder="Address">
+                </div><br>
+                <div class ="input-group">
+                  <span class="input-group-addon"><b>comments:</b></span>
+                  <textarea class="form-control" placeholder="Please leave your comment"></textarea>
+                </div>
             </fieldset>
+            <button class="btn btn-warning space-30" id="post" type="submit">Post a Review</button>
           </form>
         </div>
       </div>
-<!-- review panel will be added at this location-->
+<!-- top button. move to the top of the page -->
       <div class="row space-30">
         <div class="col-md-2 col-md-offset-5 text-center">
           <a href="#top">

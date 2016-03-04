@@ -1,40 +1,47 @@
-var reviews = [{
-  restaurant: 'Restaurant1',
-  address: '123 Abc St. Tustin CA 92606',
-  name: 'Andrew',
-  city: 'Tustin',
-  zip: 92606,
-  comment: 'This is a review'
-}, {
-  restaurant: 'Restaurant2',
-  address: '321 Cba St. Irvine CA 92602',
-  name: 'Helen',
-  city: 'Irvine',
-  zip: 92602,
-  comment: 'This is a review'
-}, {
-  restaurant: 'Restaurant3',
-  address: '456 Def Ave. Los Angeles CA 92638',
-  name: 'Mark',
-  city: 'Los Angeles',
-  zip: 92638,
-  comment: 'This is a review'
-}, {
-  restaurant: 'Restaurant4',
-  address: '789 Ghi Blvd. Irvine CA 92620',
-  name: 'Garry',
-  city: 'Irvine',
-  zip: 92620,
-  comment: 'This is a reviewList'
-}, {
-  restaurant: 'Restaurant5',
-  address: '987 Jkl Ave. Garden Grove CA 92843',
-  name: 'Phillip',
-  city: 'Garden Grove',
-  zip: 92843,
-  comment: 'This is a Review'
-}];
+var reviews = [
+  {
+    restaurant: 'Restaurant1',
+    address: '123 Abc St. Tustin CA 92606',
+    name: 'Andrew',
+    city: 'Tustin',
+    zip: 92606,
+    comment: 'This is a review'
+  },
+  {
+    restaurant: 'Restaurant2',
+    address: '321 Cba St. Irvine CA 92602',
+    name: 'Helen',
+    city: 'Irvine',
+    zip: 92602,
+    comment: 'This is a review'
+  },
+  {
+    restaurant: 'Restaurant3',
+    address: '456 Def Ave. Los Angeles CA 92638',
+    name: 'Mark',
+    city: 'Los Angeles',
+    zip: 92638,
+    comment: 'This is a review'
+  },
+  {
+    restaurant: 'Restaurant4',
+    address: '789 Ghi Blvd. Irvine CA 92620',
+    name: 'Garry',
+    city: 'Irvine',
+    zip: 92620,
+    comment: 'This is a reviewList'
+  },
+  {
+    restaurant: 'Restaurant5',
+    address: '987 Jkl Ave. Garden Grove CA 92843',
+    name: 'Phillip',
+    city: 'Garden Grove',
+    zip: 92843,
+    comment: 'This is a Review'
+  }
+];
 
+//issue 1 & 2. User can search reviews and view a list of reveiws
 var reviewLocation = document.getElementById('reviewList');
 var searchInput = document.getElementById('keyword');
 var lookUp = document.getElementById('search');
@@ -51,7 +58,7 @@ var lookUp = document.getElementById('search');
 
 function results(event) {
   event.preventDefault();
-  for (i = 0; i < reviews.length; i++) {
+  for (var i = 0; i < reviews.length; i++) {
     var reviewContent = document.createElement('div')
     reviewContent.setAttribute('class', 'panel panel-default');
 
@@ -123,19 +130,7 @@ function results(event) {
 // lookUp.addEventListener('submit', removeResults);
 //Enhancement to the search function. Will visit later.
 lookUp.addEventListener('submit', results);
+// end of issue 1 & 2.
 
-
-var asdf = [{
-  a: 'a s d f',
-  b: 'q w e r t y'
-}, {
-  a: 'a g d s w',
-  b: 'a f k o w'
-}];
-
-function test(value) {
-  var spliced = value[0].a.split(' ');
-  console.log(spliced);
-}
-
-test(asdf);
+//issue 3. User can post a review.
+var writeReview = document.getElementById('write');
