@@ -29,40 +29,52 @@
             </div>
           </form><br>
 <!-- write review. review panel will display when clicked -->
-          <div class="btn btn-warning" id="write" type="submit">Write your own review!
+          <div class="btn btn-warning" id="write">Write your own review!
           </div>
         </div>
       </div>
-<!-- search result will be shown here -->
-      <div class="row space-70">
-        <div class="col-md-8 col-md-offset-2" id="reviewList">
-        </div>
-      </div>
 <!-- review panel-->
-      <div class="row space-30 hidden">
+      <div class="row space-30 hidden" id="reviewPanel">
         <div class="col-md-8 col-md-offset-2">
           <form>
             <fieldset>
               <legend>Please Share Your Review</legend>
                 <div class="input-group">
                   <span class="input-group-addon"><b>Name:</b></span>
-                  <input type="text" class="form-control" placeholder="Your Name">
+                  <input type="text" class="form-control" id="name" placeholder="Your Name">
                 </div><br>
                 <div class="input-group">
                   <span class="input-group-addon"><b>Restanrant Name:</b></span>
-                  <input type="text" class="form-control" placeholder="Restaurant">
+                  <input type="text" class="form-control" id="restaurant" placeholder="Restaurant">
                 </div><br>
                 <div class="input-group">
-                  <span class="input-group-addon"><b>Restaurant Address:</b></span>
-                  <input type="text" class="form-control" placeholder="Address">
+                  <span class="input-group-addon"><b>Street Address:</b></span>
+                  <input type="text" class="form-control" id="address" placeholder="Address">
+                </div>
+                <div class="input-group">
+                  <span class="input-group-addon"><b>City:</b></span>
+                  <input type="text" class="form-control" id="city" placeholder="City">
+                </div>
+                <div class="input-group">
+                  <span class="input-group-addon"><b>State:</b></span>
+                  <input type="text" class="form-control" id="state" placeholder="State">
+                </div>
+                <div class="input-group">
+                  <span class="input-group-addon"><b>Zip Code:</b></span>
+                  <input type="text" class="form-control" id="zip" placeholder="Zip Code">
                 </div><br>
                 <div class ="input-group">
                   <span class="input-group-addon"><b>comments:</b></span>
-                  <textarea class="form-control" placeholder="Please leave your comment"></textarea>
+                  <textarea class="form-control" id="comment" placeholder="Please leave your comment"></textarea>
                 </div>
             </fieldset>
             <button class="btn btn-warning space-30" id="post" type="submit">Post a Review</button>
           </form>
+        </div>
+      </div>
+<!-- search result will be shown here -->
+      <div class="row space-70">
+        <div class="col-md-8 col-md-offset-2" id="reviewList">
         </div>
       </div>
 <!-- top button. move to the top of the page -->
