@@ -210,4 +210,8 @@ function post() {
 }
 
 
-postReview.addEventListener('click', post)
+postReview.addEventListener('click', post);
+  //this will allow writing panel to dissapear as user clicks the button to post a review.
+postReview.addEventListener('click', function() {
+  toggleClass('hidden', reviewInput);
+});
