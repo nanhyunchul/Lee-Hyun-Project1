@@ -123,3 +123,19 @@ function results(event) {
 // lookUp.addEventListener('submit', removeResults);
 //Enhancement to the search function. Will visit later.
 lookUp.addEventListener('submit', results);
+
+
+var asdf = [{
+  a: 'a s d f',
+  b: 'q w e r t y'
+}, {
+  a: 'a g d s w',
+  b: 'a f k o w'
+}];
+
+function test(value) {
+  var spliced = value[0].a.split(' ');
+  console.log(spliced);
+}
+
+test(asdf);
