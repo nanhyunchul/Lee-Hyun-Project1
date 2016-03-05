@@ -173,8 +173,16 @@ function post() {
   newReview.restaurant = reviewRestaurant.value;
   newReview.address = reviewAddress.value + ' ' + reviewCity.value + ' ' + reviewState.value + ' ' + reviewZip.value;
   newReview.city = reviewCity.value;
+  newReview.state = reviewState.value;
   newReview.zip = reviewZip.value;
   newReview.comment = reviewComment.value;
+
+  for (i in newReview) {
+    if (newReview[i] == '') {
+      alert('please fill out every section of review');
+      return;
+    }
+  }
 
   reviews.unshift(newReview);
 
