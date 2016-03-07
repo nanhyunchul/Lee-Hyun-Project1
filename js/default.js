@@ -117,20 +117,14 @@ function results(event) {
   }
 }
 
-lookUp.addEventListener('submit', results);
+lookUp.addEventListener('submit', function() {
+  if (reviewLocation.firstChild) {
+    reviewLocation.removeChild(reviewLocation.firstChild);
+  } else {
+  results;
+  }
+});
 // end of issue 1 & 2.
-
-// var remove = document.getElementsByClassName('panel panel-default');
-// var parentRemove = remove.parentNode;
-//
-// function removeResults(event) {
-//   event.preventDefault();
-//   for (i = 0; i < remove.length; i++)
-//     parentRemove.removeChild(remove[i]);
-// }
-//
-// lookUp.addEventListener('submit', removeResults);
-//This is an Enhancement to the search function. Will visit later.
 
 //issue 3. User can post a review.
 //hide&show function for write button.
@@ -140,6 +134,12 @@ var reviewInput = document.getElementById('reviewPanel');
 function toggleClass(value, element) {
   var reviewClasses = element.className.split(' ');
   var position = reviewClasses.indexOf(value);
+
+  for (i in newReview) {
+    if (newReview[i] == '') {
+      return;
+    }
+  }
 
   if (position == -1) {
     reviewClasses.push(value);
@@ -156,6 +156,7 @@ writeReview.addEventListener('click', function() {
 
 //post function.
 var postReview = document.getElementById('post');
+var newReview = {};
 
 function post() {
   event.preventDefault();
@@ -168,7 +169,6 @@ function post() {
   var reviewZip = document.getElementById('zip');
   var reviewComment = document.getElementById('comment');
 
-  var newReview = {};
   newReview.name = reviewName.value;
   newReview.restaurant = reviewRestaurant.value;
   newReview.address = reviewAddress.value + ' ' + reviewCity.value + ' ' + reviewState.value + ' ' + reviewZip.value;
@@ -214,9 +214,8 @@ function post() {
   commentBody.appendChild(commentText);
   reviewContent.appendChild(commentHeading);
   reviewContent.appendChild(commentBody);
-  reviewLocation.appendChild(reviewContent);
+  reviewLocation.insertBefore(reviewContent, reviewLocation.firstChild);
 }
-
 
 postReview.addEventListener('click', post);
   //this will allow writing panel to dissapear as user clicks the button to post a review.
