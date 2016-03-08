@@ -186,7 +186,6 @@ writeReview.addEventListener('click', function() {
 //post function.
 var postReview = document.getElementById('post');
 
-
 function post() {
   event.preventDefault();
   //create a new object with input values and push it to an array 'reviews'.
@@ -269,7 +268,7 @@ function post() {
 postReview.addEventListener('click', post);
   //this will allow writing panel to dissapear as user clicks the button to post a review.
 postReview.addEventListener('click', function() {
-      toggleClass('hidden', reviewInput);
+  toggleClass('hidden', reviewInput);
 });
 
 // document.body.addEventListener('click', function(theEvent));
