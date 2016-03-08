@@ -5,7 +5,8 @@ var reviews = [
     name: 'Andrew',
     city: 'Tustin',
     zip: 92606,
-    comment: 'This is a review'
+    comment: 'This is a review',
+    star: 5
   },
   {
     restaurant: 'Restaurant2',
@@ -13,7 +14,8 @@ var reviews = [
     name: 'Helen',
     city: 'Irvine',
     zip: 92602,
-    comment: 'This is a review'
+    comment: 'This is a review',
+    star: 3
   },
   {
     restaurant: 'Restaurant3',
@@ -21,7 +23,8 @@ var reviews = [
     name: 'Mark',
     city: 'Los Angeles',
     zip: 92638,
-    comment: 'This is a review'
+    comment: 'This is a review',
+    star: 4
   },
   {
     restaurant: 'Restaurant4',
@@ -29,7 +32,8 @@ var reviews = [
     name: 'Garry',
     city: 'Irvine',
     zip: 92620,
-    comment: 'This is a reviewList'
+    comment: 'This is a reviewList',
+    star: 4
   },
   {
     restaurant: 'Restaurant5',
@@ -37,7 +41,8 @@ var reviews = [
     name: 'Phillip',
     city: 'Garden Grove',
     zip: 92843,
-    comment: 'This is a Review'
+    comment: 'This is a Review',
+    star: 1
   }
 ];
 
@@ -67,15 +72,31 @@ function results() {
     var commentBody = document.createElement('div');
     commentBody.setAttribute('class', 'panel-body');
 
+    var commentBlock = document.createElement('p');
+
     var commentText = document.createTextNode(reviews[i].comment);
+
+    var commentRestaurant = document.createElement('div');
+    commentRestaurant.setAttribute('class', 'panel-body hidden');
+
+    var commentAddress = document.createTextNode(reviews[i].address);
 
     if (searchInput.value == '') {
       profileName.appendChild(userName);
       commentHeading.appendChild(profilePicture);
       commentHeading.appendChild(profileName);
-      commentBody.appendChild(commentText);
+      for (var n = 0; n < reviews[i].star; n++) {
+        var reviewRating = document.createElement('i');
+        reviewRating.setAttribute('class', 'fa fa-star');
+        commentBody.appendChild(reviewRating);
+      }
+      commentBlock.appendChild(commentText);
+      commentBody.appendChild(commentBlock);
+      commentBody.appendChild(commentBlock);
+      commentRestaurant.appendChild(commentAddress);
       reviewContent.appendChild(commentHeading);
       reviewContent.appendChild(commentBody);
+      reviewContent.appendChild(commentRestaurant);
       reviewLocation.appendChild(reviewContent);
     }
 
@@ -83,9 +104,17 @@ function results() {
       profileName.appendChild(userName);
       commentHeading.appendChild(profilePicture);
       commentHeading.appendChild(profileName);
-      commentBody.appendChild(commentText);
+      for (var n = 0; n < reviews[i].star; n++) {
+        var reviewRating = document.createElement('i');
+        reviewRating.setAttribute('class', 'fa fa-star');
+        commentBody.appendChild(reviewRating);
+      }
+      commentBlock.appendChild(commentText);
+      commentBody.appendChild(commentBlock);
+      commentRestaurant.appendChild(commentAddress);
       reviewContent.appendChild(commentHeading);
       reviewContent.appendChild(commentBody);
+      reviewContent.appendChild(commentRestaurant);
       reviewLocation.appendChild(reviewContent);
     }
 
@@ -108,7 +137,13 @@ function results() {
       commentHeading.appendChild(restaurantPicture);
       commentHeading.appendChild(restaurantName);
       commentHeading.appendChild(restaurantAddress);
-      commentBody.appendChild(commentText);
+      for (var n = 0; n < reviews[i].star; n++) {
+        var reviewRating = document.createElement('i');
+        reviewRating.setAttribute('class', 'fa fa-star');
+        commentBody.appendChild(reviewRating);
+      }
+      commentBlock.appendChild(commentText);
+      commentBody.appendChild(commentBlock);
       reviewContent.appendChild(commentHeading);
       reviewContent.appendChild(commentBody);
       reviewLocation.appendChild(reviewContent);
@@ -162,6 +197,7 @@ function post() {
   var reviewState = document.getElementById('state');
   var reviewZip = document.getElementById('zip');
   var reviewComment = document.getElementById('comment');
+  var reviewStar = document.getElementById('star');
   var newReview = {
     name: reviewName.value,
     restaurant: reviewRestaurant.value,
@@ -169,7 +205,8 @@ function post() {
     city: reviewCity.value,
     state: reviewState.value,
     zip: reviewZip.value,
-    comment: reviewComment.value
+    comment: reviewComment.value,
+    star: reviewStar.value
   };
 
   for (i in newReview) {
@@ -182,7 +219,9 @@ function post() {
   reviews.unshift(newReview);
 
   //append the values of 'newReview' to the list of reviews.
-  var reviewContent = document.createElement('div')
+
+
+  var reviewContent = document.createElement('div');
   reviewContent.setAttribute('class', 'panel panel-default');
 
   var commentHeading = document.createElement('div');
@@ -201,26 +240,40 @@ function post() {
   var commentBody = document.createElement('div');
   commentBody.setAttribute('class', 'panel-body');
 
+  var commentBlock = document.createElement('p')
+
   var commentText = document.createTextNode(newReview.comment);
+
+  var commentRestaurant = document.createElement('div');
+  commentRestaurant.setAttribute('class', 'panel-body hidden');
+
+  var commentAddress = document.createTextNode(newReview.address);
 
   profileName.appendChild(userName);
   commentHeading.appendChild(profilePicture);
   commentHeading.appendChild(profileName);
-  commentBody.appendChild(commentText);
+  for (var i = 0; i < newReview.star; i++) {
+    var reviewRating = document.createElement('i');
+    reviewRating.setAttribute('class', 'fa fa-star');
+    commentBody.appendChild(reviewRating);
+  }
+  commentBlock.appendChild(commentText);
+  commentBody.appendChild(commentBlock);
+  commentRestaurant.appendChild(commentAddress);
   reviewContent.appendChild(commentHeading);
   reviewContent.appendChild(commentBody);
+  reviewContent.appendChild(commentRestaurant);
   reviewLocation.insertBefore(reviewContent, reviewLocation.firstChild);
 }
 
 postReview.addEventListener('click', post);
   //this will allow writing panel to dissapear as user clicks the button to post a review.
 postReview.addEventListener('click', function() {
-  var inputs = document.getElementsByClassName('inputs');
-  for (var i = 0; i < inputs.length; i++) {
-    if (inputs[i].value = '') {
-      return;
-    } else {
       toggleClass('hidden', reviewInput);
-    }
-  }
 });
+
+// document.body.addEventListener('click', function(theEvent));
+//   var id = theEvent.target.getAttribute('data-id');
+//   var type = theEvent.target.textcontent;
+//
+//   if (type == 'comment') {addComment(id);};
