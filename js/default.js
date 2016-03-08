@@ -46,8 +46,7 @@ var reviewLocation = document.getElementById('reviewList');
 var searchInput = document.getElementById('keyword');
 var lookUp = document.getElementById('search');
 
-function results(event) {
-  event.preventDefault();
+function results() {
   for (var i = 0; i < reviews.length; i++) {
     var reviewContent = document.createElement('div')
     reviewContent.setAttribute('class', 'panel panel-default');
@@ -117,13 +116,14 @@ function results(event) {
   }
 }
 
-lookUp.addEventListener('submit', function() {
-  if (reviewLocation.firstChild) {
-    reviewLocation.removeChild(reviewLocation.firstChild);
-  } else {
-  results;
+lookUp.addEventListener('submit', function(event) {
+  event.preventDefault();
+  while (reviewLocation.firstChild) {
+    reviewLocation.removeChild(reviewLocation.firstChild)
   }
+  results();
 });
+
 // end of issue 1 & 2.
 
 //issue 3. User can post a review.
@@ -134,12 +134,6 @@ var reviewInput = document.getElementById('reviewPanel');
 function toggleClass(value, element) {
   var reviewClasses = element.className.split(' ');
   var position = reviewClasses.indexOf(value);
-
-  for (i in newReview) {
-    if (newReview[i] == '') {
-      return;
-    }
-  }
 
   if (position == -1) {
     reviewClasses.push(value);
@@ -156,7 +150,7 @@ writeReview.addEventListener('click', function() {
 
 //post function.
 var postReview = document.getElementById('post');
-var newReview = {};
+
 
 function post() {
   event.preventDefault();
@@ -168,14 +162,15 @@ function post() {
   var reviewState = document.getElementById('state');
   var reviewZip = document.getElementById('zip');
   var reviewComment = document.getElementById('comment');
-
-  newReview.name = reviewName.value;
-  newReview.restaurant = reviewRestaurant.value;
-  newReview.address = reviewAddress.value + ' ' + reviewCity.value + ' ' + reviewState.value + ' ' + reviewZip.value;
-  newReview.city = reviewCity.value;
-  newReview.state = reviewState.value;
-  newReview.zip = reviewZip.value;
-  newReview.comment = reviewComment.value;
+  var newReview = {
+    name: reviewName.value,
+    restaurant: reviewRestaurant.value,
+    address: reviewAddress.value + ' ' + reviewCity.value + ' ' + reviewState.value + ' ' + reviewZip.value,
+    city: reviewCity.value,
+    state: reviewState.value,
+    zip: reviewZip.value,
+    comment: reviewComment.value
+  };
 
   for (i in newReview) {
     if (newReview[i] == '') {
@@ -201,12 +196,12 @@ function post() {
   var profileName = document.createElement('span');
   profileName.setAttribute('class', 'panel-title');
 
-  var userName = document.createTextNode(reviews[0].name);
+  var userName = document.createTextNode(newReview.name);
 
   var commentBody = document.createElement('div');
   commentBody.setAttribute('class', 'panel-body');
 
-  var commentText = document.createTextNode(reviews[0].comment);
+  var commentText = document.createTextNode(newReview.comment);
 
   profileName.appendChild(userName);
   commentHeading.appendChild(profilePicture);
@@ -220,5 +215,12 @@ function post() {
 postReview.addEventListener('click', post);
   //this will allow writing panel to dissapear as user clicks the button to post a review.
 postReview.addEventListener('click', function() {
-  toggleClass('hidden', reviewInput);
+  var inputs = document.getElementsByClassName('inputs');
+  for (var i = 0; i < inputs.length; i++) {
+    if (inputs[i].value = '') {
+      return;
+    } else {
+      toggleClass('hidden', reviewInput);
+    }
+  }
 });
