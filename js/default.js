@@ -201,6 +201,7 @@ function post() {
     name: reviewName.value,
     restaurant: reviewRestaurant.value,
     address: reviewAddress.value + ' ' + reviewCity.value + ' ' + reviewState.value + ' ' + reviewZip.value,
+    street: reviewAddress.value,
     city: reviewCity.value,
     state: reviewState.value,
     zip: reviewZip.value,
@@ -216,9 +217,6 @@ function post() {
   }
 
   reviews.unshift(newReview);
-
-  //append the values of 'newReview' to the list of reviews.
-
 
   var reviewContent = document.createElement('div');
   reviewContent.setAttribute('class', 'panel panel-default');
@@ -263,13 +261,15 @@ function post() {
   reviewContent.appendChild(commentBody);
   reviewContent.appendChild(commentRestaurant);
   reviewLocation.insertBefore(reviewContent, reviewLocation.firstChild);
+
+  toggleClass('hidden', reviewInput);
 }
 
 postReview.addEventListener('click', post);
   //this will allow writing panel to dissapear as user clicks the button to post a review.
-postReview.addEventListener('click', function() {
-  toggleClass('hidden', reviewInput);
-});
+// postReview.addEventListener('click', function() {
+//   toggleClass('hidden', reviewInput);
+// });
 
 // document.body.addEventListener('click', function(theEvent));
 //   var id = theEvent.target.getAttribute('data-id');
