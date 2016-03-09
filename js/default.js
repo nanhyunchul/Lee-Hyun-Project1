@@ -36,7 +36,7 @@ var reviews = [
     name: 'Garry',
     city: 'Irvine',
     zip: 92620,
-    comment: 'This is a reviewList',
+    comment: 'This is a review',
     star: 4
   },
   {
@@ -87,11 +87,6 @@ function results() {
 
     var commentText = document.createTextNode(reviews[i].comment);
 
-    var commentRestaurant = document.createElement('div');
-    commentRestaurant.setAttribute('class', 'panel-body hidden');
-
-    var commentAddress = document.createTextNode(reviews[i].address);
-
     if (searchInput.value == '') {
       profileName.appendChild(userName);
       commentHeading.appendChild(profilePicture);
@@ -105,10 +100,8 @@ function results() {
       commentBlock.appendChild(commentText);
       commentBody.appendChild(commentBlock);
       commentBody.appendChild(commentBlock);
-      commentRestaurant.appendChild(commentAddress);
       reviewContent.appendChild(commentHeading);
       reviewContent.appendChild(commentBody);
-      reviewContent.appendChild(commentRestaurant);
       reviewLocation.appendChild(reviewContent);
     }
 
@@ -124,10 +117,8 @@ function results() {
       }
       commentBlock.appendChild(commentText);
       commentBody.appendChild(commentBlock);
-      commentRestaurant.appendChild(commentAddress);
       reviewContent.appendChild(commentHeading);
       reviewContent.appendChild(commentBody);
-      reviewContent.appendChild(commentRestaurant);
       reviewLocation.appendChild(reviewContent);
     }
 
@@ -163,7 +154,6 @@ function results() {
     }
   }
 }
-
 // end of issue 1 & 2.
 
 //issue 3. User can post a review.
@@ -249,11 +239,6 @@ function post() {
 
   var commentText = document.createTextNode(newReview.comment);
 
-  var commentRestaurant = document.createElement('div');
-  commentRestaurant.setAttribute('class', 'panel-body hidden');
-
-  var commentAddress = document.createTextNode(newReview.address);
-
   profileName.appendChild(userName);
   commentHeading.appendChild(profilePicture);
   commentHeading.appendChild(profileName);
@@ -265,26 +250,24 @@ function post() {
   }
   commentBlock.appendChild(commentText);
   commentBody.appendChild(commentBlock);
-  commentRestaurant.appendChild(commentAddress);
   reviewContent.appendChild(commentHeading);
   reviewContent.appendChild(commentBody);
-  reviewContent.appendChild(commentRestaurant);
   reviewLocation.insertBefore(reviewContent, reviewLocation.firstChild);
 
   toggleClass('hidden', reviewInput);
 }
 
-// postReview.addEventListener('click', post);
-
 var body = document.body;
 body.addEventListener('click', function(event) {
   event.preventDefault();
+  var id = event.target.getAttribute('data-id');
   var type = event.target.textContent;
-  if (type == 'More Info') {
-    var hideAddress = event.path[2].getElementsByClassName('hidden')[0];
-    toggleClass('hidden', hideAddress);
-    // event.path[2].getElementsByClassName('hidden')[0].className = 'panel-body';
-  }
+  console.log(lookUp);
+  // if (type == 'More Info') {
+  //   var hideAddress = event.path[2].getElementsByClassName('hidden')[0];
+  //   toggleClass('hidden', hideAddress);
+  //   // event.path[2].getElementsByClassName('hidden')[0].className = 'panel-body';
+  // }
   if (type == 'search') {
     while (reviewLocation.firstChild) {
       reviewLocation.removeChild(reviewLocation.firstChild);
@@ -297,7 +280,21 @@ body.addEventListener('click', function(event) {
   if (type == 'Post a Review') {
     post();
   }
-})
+  for (i = 0; i < reviews.length; i++) {
+    var attachRestaurant = document.body.getElementsByClassName('panel panel-default')[i];
+    var restaurantInfo = document.createElement('div');
+    restaurantInfo.setAttribute('class', 'panel-body');
+    var addressBox = document.createElement('p');
+    var commentRestaurant = document.createTextNode(reviews[i].restaurant);
+    var commentAddress = document.createTextNode(reviews[i].address);
+    if (id == reviews[i].id) {
+      restaurantInfo.appendChild(commentRestaurant);
+      addressBox.appendChild(commentAddress);
+      restaurantInfo.appendChild(addressBox);
+      attachRestaurant.appendChild(restaurantInfo);
+    }
+  }
+});
 // document.body.addEventListener('click', function(theEvent));
 //   var id = theEvent.target.getAttribute('data-id');
 //   var type = theEvent.target.textcontent;
