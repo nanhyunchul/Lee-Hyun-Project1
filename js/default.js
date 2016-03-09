@@ -1,5 +1,6 @@
 var reviews = [
   {
+    id: 1,
     restaurant: 'Restaurant1',
     address: '123 Abc St. Tustin CA 92606',
     name: 'Andrew',
@@ -9,6 +10,7 @@ var reviews = [
     star: 5
   },
   {
+    id: 2,
     restaurant: 'Restaurant2',
     address: '321 Cba St. Irvine CA 92602',
     name: 'Helen',
@@ -18,6 +20,7 @@ var reviews = [
     star: 3
   },
   {
+    id: 3,
     restaurant: 'Restaurant3',
     address: '456 Def Ave. Los Angeles CA 92638',
     name: 'Mark',
@@ -27,6 +30,7 @@ var reviews = [
     star: 4
   },
   {
+    id: 4,
     restaurant: 'Restaurant4',
     address: '789 Ghi Blvd. Irvine CA 92620',
     name: 'Garry',
@@ -36,6 +40,7 @@ var reviews = [
     star: 4
   },
   {
+    id: 5,
     restaurant: 'Restaurant5',
     address: '987 Jkl Ave. Garden Grove CA 92843',
     name: 'Phillip',
@@ -69,6 +74,12 @@ function results() {
 
     var userName = document.createTextNode(reviews[i].name);
 
+    var moreInfo = document.createElement('button');
+    moreInfo.setAttribute('type', 'button');
+    moreInfo.setAttribute('data-id', reviews[i].id);
+    moreInfo.setAttribute('class', 'btn btn-warning pull-right');
+    moreInfo.textContent = 'More Info';
+
     var commentBody = document.createElement('div');
     commentBody.setAttribute('class', 'panel-body');
 
@@ -85,6 +96,7 @@ function results() {
       profileName.appendChild(userName);
       commentHeading.appendChild(profilePicture);
       commentHeading.appendChild(profileName);
+      commentHeading.appendChild(moreInfo);
       for (var n = 0; n < reviews[i].star; n++) {
         var reviewRating = document.createElement('i');
         reviewRating.setAttribute('class', 'fa fa-star');
@@ -104,6 +116,7 @@ function results() {
       profileName.appendChild(userName);
       commentHeading.appendChild(profilePicture);
       commentHeading.appendChild(profileName);
+      commentHeading.appendChild(moreInfo);
       for (var n = 0; n < reviews[i].star; n++) {
         var reviewRating = document.createElement('i');
         reviewRating.setAttribute('class', 'fa fa-star');
@@ -151,14 +164,6 @@ function results() {
   }
 }
 
-lookUp.addEventListener('submit', function(event) {
-  event.preventDefault();
-  while (reviewLocation.firstChild) {
-    reviewLocation.removeChild(reviewLocation.firstChild)
-  }
-  results();
-});
-
 // end of issue 1 & 2.
 
 //issue 3. User can post a review.
@@ -167,21 +172,17 @@ var writeReview = document.getElementById('write');
 var reviewInput = document.getElementById('reviewPanel');
 
 function toggleClass(value, element) {
-  var reviewClasses = element.className.split(' ');
-  var position = reviewClasses.indexOf(value);
+  var classes = element.className.split(' ');
+  var position = classes.indexOf(value);
 
   if (position == -1) {
-    reviewClasses.push(value);
+    classes.push(value);
   } else {
-    reviewClasses.splice(position, 1);
+    classes.splice(position, 1);
   }
 
-  element.className = reviewClasses.join(' ');
+  element.className = classes.join(' ');
 }
-
-writeReview.addEventListener('click', function() {
-  toggleClass('hidden', reviewInput);
-});
 
 //post function.
 var postReview = document.getElementById('post');
@@ -206,7 +207,8 @@ function post() {
     state: reviewState.value,
     zip: reviewZip.value,
     comment: reviewComment.value,
-    star: reviewStar.value
+    star: reviewStar.value,
+    id: reviews.length + 1
   };
 
   for (i in newReview) {
@@ -232,6 +234,12 @@ function post() {
   var profileName = document.createElement('span');
   profileName.setAttribute('class', 'panel-title');
 
+  var moreInfo = document.createElement('button');
+  moreInfo.setAttribute('type', 'button');
+  moreInfo.setAttribute('data-id', newReview.id);
+  moreInfo.setAttribute('class', 'btn btn-warning pull-right');
+  moreInfo.textContent = 'More Info';
+
   var userName = document.createTextNode(newReview.name);
 
   var commentBody = document.createElement('div');
@@ -249,6 +257,7 @@ function post() {
   profileName.appendChild(userName);
   commentHeading.appendChild(profilePicture);
   commentHeading.appendChild(profileName);
+  commentHeading.appendChild(moreInfo);
   for (var i = 0; i < newReview.star; i++) {
     var reviewRating = document.createElement('i');
     reviewRating.setAttribute('class', 'fa fa-star');
@@ -265,12 +274,30 @@ function post() {
   toggleClass('hidden', reviewInput);
 }
 
-postReview.addEventListener('click', post);
-  //this will allow writing panel to dissapear as user clicks the button to post a review.
-// postReview.addEventListener('click', function() {
-//   toggleClass('hidden', reviewInput);
-// });
+// postReview.addEventListener('click', post);
 
+var body = document.body;
+body.addEventListener('click', function(event) {
+  event.preventDefault();
+  var type = event.target.textContent;
+  if (type == 'More Info') {
+    var hideAddress = event.path[2].getElementsByClassName('hidden')[0];
+    toggleClass('hidden', hideAddress);
+    // event.path[2].getElementsByClassName('hidden')[0].className = 'panel-body';
+  }
+  if (type == 'search') {
+    while (reviewLocation.firstChild) {
+      reviewLocation.removeChild(reviewLocation.firstChild);
+    }
+    results();
+  }
+  if (type =='Write your own review!') {
+    toggleClass('hidden', reviewInput);
+  }
+  if (type == 'Post a Review') {
+    post();
+  }
+})
 // document.body.addEventListener('click', function(theEvent));
 //   var id = theEvent.target.getAttribute('data-id');
 //   var type = theEvent.target.textcontent;
