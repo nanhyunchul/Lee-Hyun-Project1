@@ -78,10 +78,10 @@ function results() {
     moreInfo.setAttribute('type', 'button');
     moreInfo.setAttribute('data-id', reviews[i].id);
     moreInfo.setAttribute('class', 'btn btn-warning pull-right');
-    moreInfo.textContent = 'More Info';
+    moreInfo.textContent = 'Restaurant Info';
 
     var commentBody = document.createElement('div');
-    commentBody.setAttribute('class', 'panel-body');
+    commentBody.setAttribute('class', 'panel-body comment');
 
     var commentBlock = document.createElement('p');
 
@@ -98,7 +98,6 @@ function results() {
         commentBody.appendChild(reviewRating);
       }
       commentBlock.appendChild(commentText);
-      commentBody.appendChild(commentBlock);
       commentBody.appendChild(commentBlock);
       reviewContent.appendChild(commentHeading);
       reviewContent.appendChild(commentBody);
@@ -228,12 +227,12 @@ function post() {
   moreInfo.setAttribute('type', 'button');
   moreInfo.setAttribute('data-id', newReview.id);
   moreInfo.setAttribute('class', 'btn btn-warning pull-right');
-  moreInfo.textContent = 'More Info';
+  moreInfo.textContent = 'Restaurant Info';
 
   var userName = document.createTextNode(newReview.name);
 
   var commentBody = document.createElement('div');
-  commentBody.setAttribute('class', 'panel-body');
+  commentBody.setAttribute('class', 'panel-body comment');
 
   var commentBlock = document.createElement('p')
 
@@ -262,12 +261,6 @@ body.addEventListener('click', function(event) {
   event.preventDefault();
   var id = event.target.getAttribute('data-id');
   var type = event.target.textContent;
-  console.log(lookUp);
-  // if (type == 'More Info') {
-  //   var hideAddress = event.path[2].getElementsByClassName('hidden')[0];
-  //   toggleClass('hidden', hideAddress);
-  //   // event.path[2].getElementsByClassName('hidden')[0].className = 'panel-body';
-  // }
   if (type == 'search') {
     while (reviewLocation.firstChild) {
       reviewLocation.removeChild(reviewLocation.firstChild);
@@ -280,14 +273,22 @@ body.addEventListener('click', function(event) {
   if (type == 'Post a Review') {
     post();
   }
-  for (i = 0; i < reviews.length; i++) {
-    var attachRestaurant = document.body.getElementsByClassName('panel panel-default')[i];
-    var restaurantInfo = document.createElement('div');
-    restaurantInfo.setAttribute('class', 'panel-body');
-    var addressBox = document.createElement('p');
-    var commentRestaurant = document.createTextNode(reviews[i].restaurant);
-    var commentAddress = document.createTextNode(reviews[i].address);
-    if (id == reviews[i].id) {
+  if (type == 'Restaurant Info') {
+    for (i = 0; i < reviews.length; i++) {
+      if (reviews[i].id == id) {
+        var review = reviews[i]
+      }
+    }
+    var removeRestaurant= event.path[2].getElementsByClassName('restaurant')[0];
+    if (removeRestaurant) {
+      removeRestaurant.parentNode.removeChild(removeRestaurant);
+    } else {
+      var attachRestaurant = event.path[2];
+      var restaurantInfo = document.createElement('div');
+      restaurantInfo.setAttribute('class', 'panel-body restaurant');
+      var addressBox = document.createElement('p');
+      var commentRestaurant = document.createTextNode(review.restaurant);
+      var commentAddress = document.createTextNode(review.address);
       restaurantInfo.appendChild(commentRestaurant);
       addressBox.appendChild(commentAddress);
       restaurantInfo.appendChild(addressBox);
@@ -295,8 +296,3 @@ body.addEventListener('click', function(event) {
     }
   }
 });
-// document.body.addEventListener('click', function(theEvent));
-//   var id = theEvent.target.getAttribute('data-id');
-//   var type = theEvent.target.textcontent;
-//
-//   if (type == 'comment') {addComment(id);};
