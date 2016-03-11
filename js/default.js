@@ -6,8 +6,10 @@ var reviews = [
     name: 'Andrew',
     city: 'Tustin',
     zip: 92606,
-    comment: 'This is a review',
-    star: 5
+    comment: 'Im going 5 right now as this has moved up my list of mobile favorites. I have yet to have something here I would not gladly eat again. In fact when I saw the truck on the street headed to the Orange Farmers Market.... I actually got a little giddy. Im going to focus on the spouts. They are tender down to the heart and are chard to perfection on the outside. They sprinkle in crisp leaves that have fallen off which add an amazing texture and crunch to every mouthful. Its the mystery they do on top that really seals the deal. Layered on these perfectly cooked sprouts are two sauces; one familiar, red and spicy, the "other" is tangy, peppery, savory and ends with a terrific bite. It really becomes the glue to this culinary creation. Simply amazing.',
+    star: 5,
+    userPicture: 'http://www.soulconnections.net/wp-content/uploads/2015/12/0-50x50.jpg',
+    restaurantPicture: ['http://s3-media1.fl.yelpcdn.com/bphoto/1OAnd4bJTpPovlVoTnyvhg/o.jpg', 'http://s3-media3.fl.yelpcdn.com/bphoto/RA5j9rKrHYzfAtsNkiy-yg/o.jpg', 'http://s3-media2.fl.yelpcdn.com/bphoto/UJ2TpttDHJufG-BavnOheQ/o.jpg']
   },
   {
     id: 2,
@@ -16,8 +18,10 @@ var reviews = [
     name: 'Helen',
     city: 'Irvine',
     zip: 92602,
-    comment: 'This is a review',
-    star: 3
+    comment: 'Flavors: awesome. Deeper, more interesting, and I assume more authentic than the other Ethopian places I\'ve been. Lots of good choices. We got the kitfo and the beef Tibs, and both were good, but the beef tibs were ESPECIALLY good...watch out, though, they\'re spicy; it\'ll kick your ass. I\'m glad that the sever was ok with me getting up to serve myself several more waters.\nSeating: LIMITED. I wouldn\'t come here with more than a couple of people. Which kind of sucks, because it\'s a bit hard to do Ethopian takeout, AND Ethopian is more fun with more people....but they do takeout, and that would be the way to do it. Make sure to get extra Injera.\nPrices: Pretty good for ethopian, for sure!\nLocation: Smack dab in a sketchy part of the tenderloin. Bummer.',
+    star: 3,
+    userPicture: 'http://www.soulconnections.net/wp-content/uploads/2015/12/soulmates-50x50.gif',
+    restaurantPicture: ['http://s3-media1.fl.yelpcdn.com/bphoto/D6TVRBZ27xT5kA-M7Ijc5A/o.jpg', 'http://s3-media3.fl.yelpcdn.com/bphoto/xzb3Q2fm94pOGLeOrWq5Yw/o.jpg', 'http://s3-media3.fl.yelpcdn.com/bphoto/lMRAHiosGmB5hAAHo3R42A/o.jpg']
   },
   {
     id: 3,
@@ -27,7 +31,9 @@ var reviews = [
     city: 'Los Angeles',
     zip: 92638,
     comment: 'This is a review',
-    star: 4
+    star: 4,
+    userPicture: 'http://www.soulconnections.net/wp-content/uploads/2015/12/sat-travel-50x50.jpg',
+    restaurantPicture: ['http://s3-media3.fl.yelpcdn.com/bphoto/RZTWvYOMvBMKwgb_C6QO8Q/o.jpg', 'http://s3-media3.fl.yelpcdn.com/bphoto/PaZ0Um4IIjfKLZPEsV0yag/o.jpg']
   },
   {
     id: 4,
@@ -37,7 +43,9 @@ var reviews = [
     city: 'Irvine',
     zip: 92620,
     comment: 'This is a review',
-    star: 4
+    star: 4,
+    userPicture: 'http://www.soulconnections.net/wp-content/uploads/2015/12/pg40_1-50x50.jpg',
+    restaurantPicture: ['http://s3-media3.fl.yelpcdn.com/bphoto/NLiyaU1D9zBN5Lty5dAcIQ/o.jpg', 'http://s3-media1.fl.yelpcdn.com/bphoto/0AdfShJFyO0-_m1Z_6VuVQ/o.jpg', 'http://s3-media1.fl.yelpcdn.com/bphoto/XUivCIcGfUeXqoZmEnzEwg/o.jpg', 'http://s3-media3.fl.yelpcdn.com/bphoto/KQvVNDyMhakDC2BYl8oYfQ/o.jpg']
   },
   {
     id: 5,
@@ -47,7 +55,9 @@ var reviews = [
     city: 'Garden Grove',
     zip: 92843,
     comment: 'This is a Review',
-    star: 1
+    star: 1,
+    userPicture: 'http://www.soulconnections.net/wp-content/uploads/2015/12/Winter-Solstice-Is-When-The-Sun-Stands-Still-50x50.jpg',
+    restaurantPicture: ['http://s3-media2.fl.yelpcdn.com/bphoto/GOt3Ug6yaOJAMLA2pSgtxA/o.jpg']
   }
 ];
 
@@ -59,25 +69,26 @@ function results() {
     var searchInput = document.getElementById('keyword');
 
     var reviewContent = document.createElement('div')
-    reviewContent.setAttribute('class', 'panel panel-default');
+    reviewContent.setAttribute('class', 'panel panel-danger');
 
     var commentHeading = document.createElement('div');
     commentHeading.setAttribute('class', 'panel-heading');
 
     var profilePicture = document.createElement('img');
-    profilePicture.setAttribute('src', 'images/logo.png');
-    profilePicture.setAttribute('width', '50px');
-    profilePicture.setAttribute('height', '50px');
+    profilePicture.setAttribute('src', reviews[i].userPicture);
 
     var profileName = document.createElement('span');
     profileName.setAttribute('class', 'panel-title');
 
     var userName = document.createTextNode(reviews[i].name);
 
+    var commentFooter = document.createElement('div');
+    commentFooter.setAttribute('class', 'panel-footer');
+
     var moreInfo = document.createElement('button');
     moreInfo.setAttribute('type', 'button');
     moreInfo.setAttribute('data-id', reviews[i].id);
-    moreInfo.setAttribute('class', 'btn btn-warning pull-right');
+    moreInfo.setAttribute('class', 'btn btn-danger');
     moreInfo.textContent = 'Restaurant Info';
 
     var commentBody = document.createElement('div');
@@ -90,7 +101,7 @@ function results() {
     profileName.appendChild(userName);
     commentHeading.appendChild(profilePicture);
     commentHeading.appendChild(profileName);
-    commentHeading.appendChild(moreInfo);
+    commentFooter.appendChild(moreInfo);
     for (var n = 0; n < reviews[i].star; n++) {
       var reviewRating = document.createElement('i');
       reviewRating.setAttribute('class', 'fa fa-star');
@@ -100,6 +111,7 @@ function results() {
     commentBody.appendChild(commentBlock);
     reviewContent.appendChild(commentHeading);
     reviewContent.appendChild(commentBody);
+    reviewContent.appendChild(commentFooter);
 
     if (searchInput.value == '') {
       reviewLocation.appendChild(reviewContent);
@@ -165,7 +177,7 @@ function post() {
   reviews.unshift(newReview);
 
   var reviewContent = document.createElement('div');
-  reviewContent.setAttribute('class', 'panel panel-default');
+  reviewContent.setAttribute('class', 'panel panel-danger');
 
   var commentHeading = document.createElement('div');
   commentHeading.setAttribute('class', 'panel-heading');
@@ -178,10 +190,13 @@ function post() {
   var profileName = document.createElement('span');
   profileName.setAttribute('class', 'panel-title');
 
+  var commentFooter = document.createElement('div');
+  commentFooter.setAttribute('class', 'panel-footer');
+
   var moreInfo = document.createElement('button');
   moreInfo.setAttribute('type', 'button');
   moreInfo.setAttribute('data-id', newReview.id);
-  moreInfo.setAttribute('class', 'btn btn-warning pull-right');
+  moreInfo.setAttribute('class', 'btn btn-danger');
   moreInfo.textContent = 'Restaurant Info';
 
   var userName = document.createTextNode(newReview.name);
@@ -196,7 +211,7 @@ function post() {
   profileName.appendChild(userName);
   commentHeading.appendChild(profilePicture);
   commentHeading.appendChild(profileName);
-  commentHeading.appendChild(moreInfo);
+  commentFooter.appendChild(moreInfo);
   for (var i = 0; i < newReview.star; i++) {
     var reviewRating = document.createElement('i');
     reviewRating.setAttribute('class', 'fa fa-star');
@@ -206,6 +221,7 @@ function post() {
   commentBody.appendChild(commentBlock);
   reviewContent.appendChild(commentHeading);
   reviewContent.appendChild(commentBody);
+  reviewContent.appendChild(commentFooter);
   reviewLocation.insertBefore(reviewContent, reviewLocation.firstChild);
 
   toggleClass('hidden', reviewInput);
@@ -235,6 +251,7 @@ body.addEventListener('click', function(event) {
       }
     }
     var removeRestaurant= event.path[2].getElementsByClassName('restaurant')[0];
+    console.log(event);
     if (removeRestaurant) {
       removeRestaurant.parentNode.removeChild(removeRestaurant);
     } else {
@@ -248,6 +265,13 @@ body.addEventListener('click', function(event) {
       addressBox.appendChild(commentAddress);
       restaurantInfo.appendChild(addressBox);
       attachRestaurant.appendChild(restaurantInfo);
+      for (n = 0; n < review.restaurantPicture.length; n++) {
+        var restaurantPhoto = document.createElement('img');
+        restaurantPhoto.setAttribute('src', review.restaurantPicture[n]);
+        restaurantPhoto.setAttribute('width', '100px');
+        restaurantPhoto.setAttribute('class', 'img-thumbnail')
+        restaurantInfo.appendChild(restaurantPhoto);
+      }
     }
   }
 });

@@ -5,3 +5,7 @@
 .space-70 {
   margin-top:70px;
 }
+
+.input-group-addon {
+  min-width:150px;
+}
