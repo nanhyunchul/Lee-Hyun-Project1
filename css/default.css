@@ -9,3 +9,23 @@
 .input-group-addon {
   min-width:150px;
 }
+
+body {
+  background-image:url(../images/background.png);
+  background-size: auto;
+}
+
+#title {
+  color: #BF3F15;
+  font-family: Impact, Charcoal, sans-serif;
+  font-size: 60px;
+}
+
+#share {
+  font=family: Impact, Charcoal, sans-serif;
+  font-size: 35px;
+}
+
+.panel-danger {
+  margin-bottom: 50px;
+}

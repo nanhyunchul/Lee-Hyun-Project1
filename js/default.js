@@ -19,7 +19,7 @@ var reviews = [
     name: 'Helen',
     city: 'Irvine',
     zip: 92602,
-    comment: 'Flavors: awesome. Deeper, more interesting, and I assume more authentic than the other Ethopian places I\'ve been. Lots of good choices. We got the kitfo and the beef Tibs, and both were good, but the beef tibs were ESPECIALLY good...watch out, though, they\'re spicy; it\'ll kick your ass. I\'m glad that the sever was ok with me getting up to serve myself several more water. \nseating: LIMITED. I wouldn\'t come here with more than a couple of people. Which kind of sucks, because it\'s a bit hard to do Ethopian takeout, AND Ethopian is more fun with more people....but they do takeout, and that would be the way to do it. Make sure to get extra Injera.\nPrices: Pretty good for ethopian, for sure!\nLocation: Smack dab in a sketchy part of the tenderloin. Bummer.',
+    comment: 'Flavors: awesome. Deeper, more interesting, and I assume more authentic than the other Ethopian places I\'ve been. Lots of good choices. We got the kitfo and the beef Tibs, and both were good, but the beef tibs were ESPECIALLY good...watch out, though, they\'re spicy; it\'ll kick your ass. I\'m glad that the sever was ok with me getting up to serve myself several more water. \n\nseating: LIMITED. I wouldn\'t come here with more than a couple of people. Which kind of sucks, because it\'s a bit hard to do Ethopian takeout, AND Ethopian is more fun with more people....but they do takeout, and that would be the way to do it. Make sure to get extra Injera.\nPrices: Pretty good for ethopian, for sure!\n\nLocation: Smack dab in a sketchy part of the tenderloin. Bummer.',
     star: 3,
     userPicture: 'http://www.soulconnections.net/wp-content/uploads/2015/12/soulmates-50x50.gif',
     restaurantPicture: ['http://s3-media1.fl.yelpcdn.com/bphoto/D6TVRBZ27xT5kA-M7Ijc5A/o.jpg', 'http://s3-media3.fl.yelpcdn.com/bphoto/xzb3Q2fm94pOGLeOrWq5Yw/o.jpg', 'http://s3-media3.fl.yelpcdn.com/bphoto/lMRAHiosGmB5hAAHo3R42A/o.jpg']
@@ -232,15 +232,13 @@ function post() {
 }
 
 var commentNewLine = document.getElementById('comment');
-commentNewLine.addEventListener('keypress', function(event) {
-  console.log(event);
-  var newLine = event.target.charCode;
-  console.log(newLine);
-  if (newLine == 13) {
-    var text = event.path[0].value;
-    text = text + '\n';
+commentNewLine.addEventListener('keypress', enter)
+function enter(event) {
+  var commentEnter = commentNewLine.value;
+  if (event.charCode == 13) {
+    commentEnter = commentEnter + '\n';
   }
-});
+}
 
 var body = document.body;
 body.addEventListener('click', function(event) {
